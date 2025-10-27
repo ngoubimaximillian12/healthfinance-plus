@@ -1,0 +1,14 @@
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/repository/MedicalRecordRepository.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/model/MedicalRecord.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/service/MedicalRecordService.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/controller/MedicalRecordController.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/controller/HealthCheckController.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/dto/MedicalRecordResponse.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/dto/MedicalRecordRequest.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/model/Severity.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/security/JwtService.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/security/JwtAuthenticationFilter.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/config/SwaggerConfig.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/MedicalRecordsServiceApplication.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/model/RecordType.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/medical-records-service/src/main/java/com/healthfinance/medicalrecordsservice/config/SecurityConfig.java

@@ -1,0 +1,15 @@
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/config/SwaggerConfig.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/model/MedicationRoute.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/controller/HealthCheckController.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/model/MedicationFrequency.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/service/PrescriptionService.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/config/SecurityConfig.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/dto/PrescriptionRequest.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/controller/PrescriptionController.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/model/PrescriptionStatus.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/security/JwtAuthenticationFilter.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/repository/PrescriptionRepository.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/model/Prescription.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/dto/PrescriptionResponse.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/PrescriptionServiceApplication.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/prescription-service/src/main/java/com/healthfinance/prescriptionservice/security/JwtService.java
