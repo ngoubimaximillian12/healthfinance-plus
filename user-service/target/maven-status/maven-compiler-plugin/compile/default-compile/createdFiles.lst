@@ -25,6 +25,7 @@ com/healthfinance/userservice/dto/RegisterRequest.class
 com/healthfinance/userservice/dto/LoginRequest$LoginRequestBuilder.class
 com/healthfinance/userservice/dto/AuthResponse$AuthResponseBuilder.class
 com/healthfinance/userservice/exception/BadRequestException.class
+com/healthfinance/userservice/config/CorsConfig.class
 com/healthfinance/userservice/service/UserService.class
 com/healthfinance/userservice/UserServiceApplication.class
 com/healthfinance/userservice/model/User$UserBuilder.class

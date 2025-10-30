@@ -15,5 +15,6 @@
 /Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/appointment-service/src/main/java/com/healthfinance/appointmentservice/dto/AppointmentUpdateRequest.java
 /Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/appointment-service/src/main/java/com/healthfinance/appointmentservice/controller/HealthCheckController.java
 /Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/appointment-service/src/main/java/com/healthfinance/appointmentservice/model/AppointmentType.java
+/Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/appointment-service/src/main/java/com/healthfinance/appointmentservice/config/CorsConfig.java
 /Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/appointment-service/src/main/java/com/healthfinance/appointmentservice/dto/AppointmentRequest.java
 /Users/ngoubimaximilliandiamgha/Desktop/healthfinance-plus/appointment-service/src/main/java/com/healthfinance/appointmentservice/security/JwtAuthenticationFilter.java
