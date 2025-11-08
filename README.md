@@ -147,7 +147,7 @@ curl -X GET http://localhost:8080/api/appointments \
 
 ## 👨‍💻 Developer
 
-Built by [Your Name]
+Built by [Ngoubi Maximillian Diangha ]
 
 ---
 
