@@ -33,6 +33,92 @@ services:
     networks:
       - healthfinance-network
 
+  # Kafka Ecosystem
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: healthfinance-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - healthfinance-network
+    volumes:
+      - zookeeper_data:/var/lib/zookeeper/data
+      - zookeeper_logs:/var/lib/zookeeper/log
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: healthfinance-kafka
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_PORT: 9101
+      KAFKA_JMX_HOSTNAME: localhost
+    ports:
+      - "9092:9092"
+      - "9101:9101"
+    networks:
+      - healthfinance-network
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.5.0
+    container_name: healthfinance-schema-registry
+    depends_on:
+      - kafka
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:29092
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8085
+    ports:
+      - "8085:8085"
+    networks:
+      - healthfinance-network
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: healthfinance-kafka-ui
+    depends_on:
+      - kafka
+      - schema-registry
+    environment:
+      KAFKA_CLUSTERS_0_NAME: healthfinance
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8085
+    ports:
+      - "8090:8080"
+    networks:
+      - healthfinance-network
+
+  debezium:
+    image: debezium/connect:2.4
+    container_name: healthfinance-debezium
+    depends_on:
+      - kafka
+      - postgres
+    environment:
+      BOOTSTRAP_SERVERS: kafka:29092
+      GROUP_ID: 1
+      CONFIG_STORAGE_TOPIC: debezium_configs
+      OFFSET_STORAGE_TOPIC: debezium_offsets
+      STATUS_STORAGE_TOPIC: debezium_status
+    ports:
+      - "8083:8083"
+    networks:
+      - healthfinance-network
+
   eureka-server:
     build:
       context: ./eureka-server
@@ -115,8 +201,100 @@ services:
     networks:
       - healthfinance-network
 
+  # ML Infrastructure
+  minio:
+    image: minio/minio:latest
+    container_name: healthfinance-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - healthfinance-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.9.2
+    container_name: healthfinance-mlflow
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri postgresql://healthfinance:healthfinance123@postgres:5432/healthfinance
+      --default-artifact-root s3://mlflow/artifacts
+    environment:
+      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+      AWS_ACCESS_KEY_ID: admin
+      AWS_SECRET_ACCESS_KEY: admin123
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+      - minio
+    networks:
+      - healthfinance-network
+
+  tensorflow-serving:
+    image: tensorflow/serving:latest
+    container_name: healthfinance-tensorflow
+    environment:
+      MODEL_NAME: healthfinance-models
+      MODEL_BASE_PATH: /models
+    ports:
+      - "8501:8501"
+      - "8500:8500"
+    volumes:
+      - ./models:/models
+    networks:
+      - healthfinance-network
+
+  temporal:
+    image: temporalio/auto-setup:1.22.3
+    container_name: healthfinance-temporal
+    environment:
+      - DB=postgresql
+      - DB_PORT=5432
+      - POSTGRES_USER=healthfinance
+      - POSTGRES_PWD=healthfinance123
+      - POSTGRES_SEEDS=postgres
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development.yaml
+    ports:
+      - "7233:7233"
+      - "7234:7234"
+      - "7235:7235"
+    depends_on:
+      - postgres
+    networks:
+      - healthfinance-network
+
+  temporal-ui:
+    image: temporalio/ui:2.21.3
+    container_name: healthfinance-temporal-ui
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    ports:
+      - "8088:8080"
+    depends_on:
+      - temporal
+    networks:
+      - healthfinance-network
+
 volumes:
   postgres_data:
+  zookeeper_data:
+  zookeeper_logs:
+  kafka_data:
+  minio_data:
 
 networks:
   healthfinance-network:

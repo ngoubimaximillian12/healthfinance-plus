@@ -19,6 +19,7 @@
     <name>HealthFinance Plus</name>
 
     <modules>
+        <module>common-events</module>
         <module>eureka-server</module>
         <module>api-gateway</module>
         <module>user-service</module>
@@ -41,6 +42,11 @@
         <spring-cloud.version>2023.0.0</spring-cloud.version>
         <springdoc.version>2.3.0</springdoc.version>
         <jjwt.version>0.12.3</jjwt.version>
+        <kafka.version>3.6.1</kafka.version>
+        <temporal.version>1.22.0</temporal.version>
+        <drools.version>9.0.0.Final</drools.version>
+        <tensorflow.version>0.5.0</tensorflow.version>
+        <opentelemetry.version>1.32.0</opentelemetry.version>
     </properties>
 
     <dependencyManagement>
@@ -71,6 +77,51 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc.version}</version>
+            </dependency>
+            <!-- Kafka -->
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
+            <!-- Temporal -->
+            <dependency>
+                <groupId>io.temporal</groupId>
+                <artifactId>temporal-sdk</artifactId>
+                <version>${temporal.version}</version>
+            </dependency>
+            <!-- Drools -->
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-core</artifactId>
+                <version>${drools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-compiler</artifactId>
+                <version>${drools.version}</version>
+            </dependency>
+            <!-- TensorFlow -->
+            <dependency>
+                <groupId>org.tensorflow</groupId>
+                <artifactId>tensorflow-core-platform</artifactId>
+                <version>${tensorflow.version}</version>
+            </dependency>
+            <!-- OpenTelemetry -->
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-api</artifactId>
+                <version>${opentelemetry.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-sdk</artifactId>
+                <version>${opentelemetry.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.opentelemetry.instrumentation</groupId>
+                <artifactId>opentelemetry-spring-boot-starter</artifactId>
+                <version>2.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
